@@ -9,7 +9,7 @@ export const nameAtom = atom({
     default : ""
 })
 
-export const filterName = selector({
+export const filteredCards = selector({
     key : "filterName",
     get : ({get})=>{
         const cards = get(cardAtom)

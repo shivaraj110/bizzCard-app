@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./App.css";
 import { Bizz } from "../components/Bizz";
 import { AddCard } from "../components/AddCard";
@@ -22,11 +22,11 @@ function App() {
     <div>
       <AddCard onCardUpdate={fetchCards}/>
       <br />
-      
+
          <input type="text" placeholder="filter by name" onInput={(e)=>{
             setName(x => x = e.target.value)
         }} />
-        {name !== "" ? <Filter name={name}/> : cards.map((card) =>
+        {name !== "" ? <Filter/> : cards.map((card) =>
         <Bizz props={card} key={card._id} />
       ) }
       
