@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import { Bizz } from "../components/Bizz";
 import { AddCard } from "../components/AddCard";
-
+import { useRecoilState, useRecoilValue , useSetRecoilState} from "recoil";
+import { cardAtom, nameAtom } from "../store/atoms/cardAtoms";
+import { Filter } from "../components/Filter";
 function App() {
-  const [cards,setCards] = useState([]);
+  const [cards,setCards] = useRecoilState(cardAtom)
+  const name = useRecoilValue(nameAtom)
+  const setName = useSetRecoilState(nameAtom)
   const fetchCards = async() => {
   fetch("http://localhost:3000/cards").then(async(res) => {
         const cardss = await res.json();
@@ -19,9 +21,17 @@ function App() {
   return (
     <div>
       <AddCard onCardUpdate={fetchCards}/>
-      {cards.map((card) =>
+      <br />
+      
+         <input type="text" placeholder="filter by name" onInput={(e)=>{
+            setName(x => x = e.target.value)
+        }} />
+        {name !== "" ? <Filter name={name}/> : cards.map((card) =>
         <Bizz props={card} key={card._id} />
-      )}
+      ) }
+      
+     
+   
     </div>
   );
 }
