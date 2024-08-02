@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useState } from "react";
 
 export const AddCard = memo(({onCardUpdate})=>{
     const [name,setName] = useState('')

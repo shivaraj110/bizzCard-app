@@ -6,7 +6,6 @@ export function Filter() {
   const cards = useRecoilValue(filteredCards);
  
     return (
-        
       <div>
         {cards.map((card) => (
           <Bizz props={card} key={card._id} />
