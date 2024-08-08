@@ -7,8 +7,7 @@ import { cardAtom, nameAtom } from "../store/atoms/cardAtoms";
 import { Filter } from "../components/Filter";
 function App() {
   const [cards,setCards] = useRecoilState(cardAtom)
-  const name = useRecoilValue(nameAtom)
-  const setName = useSetRecoilState(nameAtom)
+const [name,setName] = useRecoilState(nameAtom)
   const fetchCards = async() => {
   fetch("http://localhost:3000/cards").then(async(res) => {
         const cardss = await res.json();
